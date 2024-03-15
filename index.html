@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +8,16 @@
     <!-- Incluye el archivo CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="menu">
         <img src="images/logo.png" alt="nombre de la empresa">
     </div>
-
     <div class="menu_views">
-        <p data-target="#calcularSalario">Calcular Salario</p>
         <p data-target="#consulta_automatica">Consulta automática</p>
         <p data-target="#consulta_manual">Consulta manual</p>
         <p data-target="#resultado">Resultado</p>
-    </div>
-    <div data-content id="calcularSalario">
-        <h2>Calcular Salario</h2>
-        <br>
-    
-        <p class="parrafo">Ingresa tu salario por hora</p>
-        <input type="number" name="baseSalary" id="baseSalary">
-        
-        <p class="parrafo">Ingresa tus horas trabajadas</p>
-        <input type="number" name="hoursWorked" id="hoursWorked">
-
-        <p class="parrafo">Ingresa tus horas extras</p>
-        <input type="number" name="extraHours" id="extraHours">
-    
-        <br><br>
-        <button class="boton" onclick="calculateSalary()">Calcular</button>
-
-        <p class="parrafo" id="salaryResult">Aqui estará el resultado cuando se hayan llenado la solucitud en calcular salario</p>
+        <p data-target="#crearCuenta">Crear Cuenta</p>
     </div>
     <div class="content">
         <div data-content id="consulta_automatica" class="active">
@@ -50,33 +33,49 @@
             <br><br>
             <button class="boton" onclick="clickBuscar()">Buscar</button>
         </div>
-
         <div data-content id="consulta_manual">
-            <h2>Consulta manual</h2>
+            <h2>Calcular Salario</h2>
             <br>
 
-            <p class="parrafo">Selecciona tu grado</p>
-            <select id="opciones_grado" onclick="mostrarContenido()">
-                <!--Las opciones de este select se van a crear automaticamente con js-->
-            </select>
+            <p class="parrafo">Ingresa tu salario por hora</p>
+            <input type="number" name="baseSalary" id="baseSalary">
 
-            <p class="parrafo">Selecciona tu antigüedad</p>
-            <select id="opciones_anti" onclick="mostrarContenido()">
-                <!--Las opciones de este select se van a crear automaticamente con js-->
-            </select>
+            <p class="parrafo">Ingresa tus horas trabajadas</p>
+            <input type="number" name="hoursWorked" id="hoursWorked">
 
-            <p class="parrafo">Introduce la cantidad de días trabajados</p>
-            <input class="inputs" type="number" name="dias_trabajados" id="dias_trabajados" oninput="validarNumero()">
+            <p class="parrafo">Ingresa tus horas extras</p>
+            <input type="number" name="extraHours" id="extraHours">
 
             <br><br>
-            <button class="boton">Calcular</button>
-        </div>
+            <button class="boton" onclick="calculateSalary()">Calcular</button>
 
+            <p class="parrafo" id="salaryResult"></p>
+        </div>
         <div data-content id="resultado">
             <h2>Resultado</h2>
             <br>
 
-            <p class="parrafo" id="texto_resultado">Aqui estará el resultado cuando se hayan llenado la solucitud en consulta automática o manual</p>
+            <p class="parrafo" id="texto_resultado">Aqui estará el resultado cuando se hayan llenado la solucitud en
+                consulta automática o manual</p>
+        </div>
+        <div data-content id="crearCuenta">
+            <h2>Crear cuenta</h2>
+            <br>
+
+            <p class="parrafo">Nombre</p>
+            <input type="text" name="name" id="name">
+
+            <p class="parrafo">Apellido</p>
+            <input type="text" name="lastName" id="lastName">
+
+            <p class="parrafo">Correo</p>
+            <input type="text" name="email" id="email">
+
+            <p class="parrafo">Contraseña</p>
+            <input type="text" name="password" id="password">
+
+            <br><br>
+            <button class="boton" onclick="createAccount()">Crear cuenta</button>
         </div>
     </div>
 
@@ -84,4 +83,5 @@
     <!-- Permite que la página se cargue y renderice primero -->
     <script src="script.js"></script>
 </body>
+
 </html>
