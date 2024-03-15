@@ -63,38 +63,63 @@ function clickBuscar() {
 window.onload = function () {
     generarOpciones_anti();
     generarOpciones_grado();
-    loadQuery();
 };
-
-function loadQuery() {
-    // Recupera el correo y la contraseña del almacenamiento local
-    var email = localStorage.getItem('email');
-    var password = localStorage.getItem('password');
-
-    // Agrega el correo y la contraseña a la consulta
-    var emailField = document.querySelector('#consulta_automatica .email');
-    var passwordField = document.querySelector('#consulta_automatica .password');
-    if (emailField && passwordField) {
-        emailField.value = email || '';
-        passwordField.value = password || '';
-    }
-}
 
 function calculateSalary() {
     validarNumero('baseSalary');
     validarNumero('hoursWorked');
     validarNumero('extraHours');
 
-    var hourlyRate = document.getElementById('baseSalary').value;
-    var hoursWorked = document.getElementById('hoursWorked').value;
-    var extraHours = document.getElementById('extraHours').value;
+    var salarioBase = parseFloat(document.getElementById('baseSalary').value);
+    var horasTrabajadas = parseFloat(document.getElementById('hoursWorked').value);
+    var horasExtras = parseFloat(document.getElementById('extraHours').value);
 
     // Las horas extras se pagan al doble
-    var extraHourlyRate = hourlyRate * 2;
+    var salarioHoraExtra = salarioBase * 2;
+    var salarioTotal = (horasTrabajadas * salarioBase) + (horasExtras * salarioHoraExtra);
 
-    var totalSalary = (hoursWorked * hourlyRate) + (extraHours * extraHourlyRate);
+    var impuestos = calcularImpuestos(salarioTotal);
+    var salarioDiario = salarioTotal - impuestos;
+    var salarioSemanal = salarioDiario * 7;
+    var salarioQuincenal = salarioDiario * 15;
+    var salarioMensual = salarioDiario * 30;
 
-    document.getElementById('salaryResult').textContent = "El salario total es: " + totalSalary;
+    document.getElementById('impuestos').textContent = "El impuesto total diario: " + impuestos.toFixed(2);
+    document.getElementById('salarioDiario').textContent = "El salario diario es: " + salarioDiario.toFixed(2);
+    document.getElementById('salarioSemanal').textContent = "El salario semanal es: " + salarioSemanal.toFixed(2);
+    document.getElementById('salarioQuincenal').textContent = "El salario quincenal es: " + salarioQuincenal.toFixed(2);
+    document.getElementById('salarioMensual').textContent = "El salario mensual es: " + salarioMensual.toFixed(2);
+}
+
+function calcularImpuestos(totalIngreso) {
+    // Definir las tasas de impuestos
+    var tasasImpuestos = [
+        { limiteInferior: 0.01, limiteSuperior: 24.54, cuotaFija: 0.00, porcentaje: 1.92 },
+        { limiteInferior: 24.54, limiteSuperior: 208.29, cuotaFija: 0.47, porcentaje: 6.40 },
+        { limiteInferior: 208.30, limiteSuperior: 366.05, cuotaFija: 12.23, porcentaje: 10.88 },
+        { limiteInferior: 366.06, limiteSuperior: 425.52, cuotaFija: 29.40, porcentaje: 16.00 },
+        { limiteInferior: 425.53, limiteSuperior: 509.46, cuotaFija: 38.91, porcentaje: 17.92 },
+        { limiteInferior: 509.47, limiteSuperior: 1024.52, cuotaFija: 53.95, porcentaje: 21.36 },
+        { limiteInferior: 1027.53, limiteSuperior: 1619.51, cuotaFija: 164.61, porcentaje: 23.52 },
+        { limiteInferior: 1619.52, limiteSuperior: 3091.90, cuotaFija: 303.85, porcentaje: 30.00 },
+        { limiteInferior: 3091.91, limiteSuperior: 4122.54, cuotaFija: 745.56, porcentaje: 32.00 },
+        { limiteInferior: 4122.55, limiteSuperior: 12367.62, cuotaFija: 1075.37, porcentaje: 34.00 },
+        { limiteInferior: 12367.63, cuotaFija: 3878.69, porcentaje: 35.00 }
+    ];
+
+    var impuestoTotal = 0;
+
+    // Calcular el impuesto para el rango de ingreso correcto
+    for (var i = 0; i < tasasImpuestos.length; i++) {
+        var rango = tasasImpuestos[i];
+        if (totalIngreso > rango.limiteInferior && (!rango.limiteSuperior || totalIngreso <= rango.limiteSuperior)) {
+            var ingresoImponible = totalIngreso - rango.limiteInferior;
+            impuestoTotal = rango.cuotaFija + (ingresoImponible * (rango.porcentaje / 100));
+            break;
+        }
+    }
+
+    return impuestoTotal;
 }
 
 function createAccount() {
