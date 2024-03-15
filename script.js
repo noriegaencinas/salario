@@ -44,13 +44,18 @@ function generarOpciones_grado() {
 
 function validarNumero(id) {
     const input = document.getElementById(id);
+    const errorSpan = document.getElementById(id + "Error"); // Obtener el span para mostrar el mensaje de error
     const regex = /^[0-9]+$/; 
     if (!regex.test(input.value)) {
+        errorSpan.textContent = "Por favor, ingresa un número válido."; // Mostrar mensaje de error
         input.value = '';
         return false;
+    } else {
+        errorSpan.textContent = ""; // Limpiar el mensaje de error si el valor es válido
     }
     return true;
 }
+
 function clickBuscar() {
     const content = document.querySelectorAll('[data-content]')
     content.forEach(c => {

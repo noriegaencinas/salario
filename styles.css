@@ -14,6 +14,10 @@ body {
     justify-content: center;
 }
 
+.error {
+    margin-bottom: 500px;
+}
+
 #consulta_manual {
     margin: 20px auto;
     padding: 1rem;
