@@ -44,11 +44,13 @@ function generarOpciones_grado() {
 
 function validarNumero(id) {
     const input = document.getElementById(id);
-    if (input.value < 0) {
-        input.value = ''; // Borra el valor si es negativo
+    const regex = /^[0-9]+$/; 
+    if (!regex.test(input.value)) {
+        input.value = '';
+        return false;
     }
+    return true;
 }
-
 function clickBuscar() {
     const content = document.querySelectorAll('[data-content]')
     content.forEach(c => {
@@ -70,15 +72,14 @@ function calculateSalary() {
     var horasTrabajadasInput = document.getElementById('hoursWorked');
     var horasExtrasInput = document.getElementById('extraHours');
 
+    if(!validarNumero('baseSalary')) { return; }
+    if(!validarNumero('hoursWorked')) { return; }
+    if(!validarNumero('extraHours')) { return; }
+
     // Verificar si los campos de entrada están vacíos
     if (!salarioBaseInput.value || !horasTrabajadasInput.value || !horasExtrasInput.value) {
-        alert(salarioBaseInput.validationMessage || horasTrabajadasInput.validationMessage || horasExtrasInput.validationMessage );
         return;
     }
-
-    validarNumero('baseSalary');
-    validarNumero('hoursWorked');
-    validarNumero('extraHours');
 
     var salarioBase = parseFloat(salarioBaseInput.value);
     var horasTrabajadas = parseFloat(horasTrabajadasInput.value);
