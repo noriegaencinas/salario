@@ -1,0 +1,55 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body {
+    background-image: url('/images/textura-piedra.jpg');
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+}
+
+.menu_views {
+    display: flex;
+    justify-content: center;
+}
+
+.menu_views p {
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+	margin-top: 2rem;
+}
+
+.parrafo {
+    padding-top: 10px;
+    font-size: large;
+}
+
+.boton {
+    font-size: large;
+    padding: 2px;
+}
+
+input, select {
+    font-size: large;
+}
+
+
+/*Son para el control de las vistas*/
+[data-content] {
+	display: none;
+}
+
+.active[data-content] {
+	display: block;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papita</title>
+    <!-- Incluye el archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="menu">
+        <img src="images/logo.png" alt="nombre de la empresa">
+    </div>
+
+    <div class="menu_views">
+        <p data-target="#consulta_automatica">Consulta automática</p>
+        <p data-target="#consulta_manual">Consulta manual</p>
+        <p data-target="#resultado">Resultado</p>
+    </div>
+
+    <div class="content">
+        <div data-content id="consulta_automatica" class="active">
+            <h2>Consulta automatica</h2>
+            <br>
+
+            <p class="parrafo">Usuario</p>
+            <input type="text" name="user" id="user">
+
+            <p class="parrafo">Contraseña</p>
+            <input type="text" name="password" id="password">
+
+            <br><br>
+            <button class="boton" onclick="clickBuscar()">Buscar</button>
+        </div>
+
+        <div data-content id="consulta_manual">
+            <h2>Consulta manual</h2>
+            <br>
+
+            <p class="parrafo">Selecciona tu grado</p>
+            <select id="opciones_grado" onclick="mostrarContenido()">
+                <!--Las opciones de este select se van a crear automaticamente con js-->
+            </select>
+
+            <p class="parrafo">Selecciona tu antigüedad</p>
+            <select id="opciones_anti" onclick="mostrarContenido()">
+                <!--Las opciones de este select se van a crear automaticamente con js-->
+            </select>
+
+            <p class="parrafo">Introduce la cantidad de días trabajados</p>
+            <input class="inputs" type="number" name="dias_trabajados" id="dias_trabajados" oninput="validarNumero()">
+
+            <br><br>
+            <button class="boton">Calcular</button>
+        </div>
+
+        <div data-content id="resultado">
+            <h2>Resultado</h2>
+            <br>
+
+            <p class="parrafo" id="texto_resultado">Aqui estará el resultado cuando se hayan llenado la solucitud en consulta automática o manual</p>
+        </div>
+    </div>
+
+    <!-- Scripts al final del cuerpo -->
+    <!-- Permite que la página se cargue y renderice primero -->
+    <script src="script.js"></script>
+</body>
+</html>
