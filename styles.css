@@ -118,3 +118,7 @@ input, select {
 .boton:hover {
     background-color: #45a049;
 }
+
+#user, #passwordConsulta {
+    display: block;
+}

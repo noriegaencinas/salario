@@ -57,6 +57,29 @@ function validarNumero(id) {
 }
 
 function clickBuscar() {
+    // Obtén los campos de entrada
+    const input1 = document.getElementById('user');
+    const input2 = document.getElementById('passwordConsulta');
+
+    // Obtén los elementos span para mostrar los errores
+    const error1 = document.getElementById('userError');
+    const error2 = document.getElementById('passwordConsultaError');
+
+    // Verifica si los campos de entrada están vacíos
+    if (!input1.value) {
+        error1.textContent = 'Por favor, rellene este campo.';
+        return;
+    } else {
+        error1.textContent = ''; // Limpia el mensaje de error si el campo no está vacío
+    }
+
+    if (!input2.value) {
+        error2.textContent = 'Por favor, rellene este campo.';
+        return;
+    } else {
+        error2.textContent = ''; // Limpia el mensaje de error si el campo no está vacío
+    }
+
     const content = document.querySelectorAll('[data-content]')
     content.forEach(c => {
         c.classList.remove('active')
