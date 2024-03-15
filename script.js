@@ -63,7 +63,22 @@ function clickBuscar() {
 window.onload = function () {
     generarOpciones_anti();
     generarOpciones_grado();
+    loadQuery();
 };
+
+function loadQuery() {
+    // Recupera el correo y la contraseña del almacenamiento local
+    var email = localStorage.getItem('email');
+    var password = localStorage.getItem('password');
+
+    // Agrega el correo y la contraseña a la consulta
+    var emailField = document.querySelector('#consulta_automatica .email');
+    var passwordField = document.querySelector('#consulta_automatica .password');
+    if (emailField && passwordField) {
+        emailField.value = email || '';
+        passwordField.value = password || '';
+    }
+}
 
 function calculateSalary() {
     validarNumero('baseSalary');
@@ -83,46 +98,4 @@ function calculateSalary() {
 }
 
 function createAccount() {
-    // Verificar si ya existe un formulario en el cuerpo del documento
-    var existingForm = document.querySelector('body form');
-
-    if (!existingForm) {
-        // Crear un nuevo formulario
-        var form = document.createElement('form');
-        form.className = 'form';
-
-        // Crear un campo de entrada para el salario por hora
-        var hourlyRateInput = document.createElement('input');
-        hourlyRateInput.type = 'number';
-        hourlyRateInput.name = 'hourlyRate';
-        hourlyRateInput.placeholder = 'Salario por hora';
-        hourlyRateInput.className = 'input';
-        form.appendChild(hourlyRateInput);
-
-        // Crear un campo de entrada para las horas trabajadas al día
-        var hoursWorkedInput = document.createElement('input');
-        hoursWorkedInput.type = 'number';
-        hoursWorkedInput.name = 'hoursWorked';
-        hoursWorkedInput.placeholder = 'Horas trabajadas al día';
-        hoursWorkedInput.className = 'input';
-        form.appendChild(hoursWorkedInput);
-
-        // Crear un campo de entrada para los días trabajados
-        var daysWorkedInput = document.createElement('input');
-        daysWorkedInput.type = 'number';
-        daysWorkedInput.name = 'daysWorked';
-        daysWorkedInput.placeholder = 'Días trabajados';
-        daysWorkedInput.className = 'input';
-        form.appendChild(daysWorkedInput);
-
-        // Crear un botón de envío para el formulario
-        var submitButton = document.createElement('input');
-        submitButton.type = 'submit';
-        submitButton.value = 'Crear Cuenta';
-        submitButton.className = 'boton';
-        form.appendChild(submitButton);
-
-        // Agregar el formulario al cuerpo del documento
-        document.body.appendChild(form);
-    }
 }

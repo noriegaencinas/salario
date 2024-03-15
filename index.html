@@ -61,22 +61,32 @@
         <div data-content id="crearCuenta">
             <h2>Crear cuenta</h2>
             <br>
-
+        
             <p class="parrafo">Nombre</p>
             <input type="text" name="name" id="name">
-
+        
             <p class="parrafo">Apellido</p>
             <input type="text" name="lastName" id="lastName">
-
+        
             <p class="parrafo">Correo</p>
             <input type="text" name="email" id="email">
-
+        
             <p class="parrafo">Contraseña</p>
             <input type="text" name="password" id="password">
-
+        
+            <p class="parrafo">Horas trabajadas por día</p>
+            <input type="number" name="dailyHours" id="dailyHours" min="0" step="1">
+        
+            <p class="parrafo">Días trabajados al mes</p>
+            <input type="number" name="daysWorked" id="daysWorked" min="0" step="1">
+        
+            <p class="parrafo">Salario por hora</p>
+            <input type="number" name="hourlyWage" id="hourlyWage" min="0">
+        
             <br><br>
             <button class="boton" onclick="createAccount()">Crear cuenta</button>
         </div>
+        
     </div>
 
     <!-- Scripts al final del cuerpo -->
