@@ -13,11 +13,29 @@
     </div>
 
     <div class="menu_views">
+        <p data-target="#calcularSalario">Calcular Salario</p>
         <p data-target="#consulta_automatica">Consulta automática</p>
         <p data-target="#consulta_manual">Consulta manual</p>
         <p data-target="#resultado">Resultado</p>
     </div>
+    <div data-content id="calcularSalario">
+        <h2>Calcular Salario</h2>
+        <br>
+    
+        <p class="parrafo">Ingresa tu salario por hora</p>
+        <input type="number" name="baseSalary" id="baseSalary">
+        
+        <p class="parrafo">Ingresa tus horas trabajadas</p>
+        <input type="number" name="hoursWorked" id="hoursWorked">
 
+        <p class="parrafo">Ingresa tus horas extras</p>
+        <input type="number" name="extraHours" id="extraHours">
+    
+        <br><br>
+        <button class="boton" onclick="calculateSalary()">Calcular</button>
+
+        <p class="parrafo" id="salaryResult">Aqui estará el resultado cuando se hayan llenado la solucitud en calcular salario</p>
+    </div>
     <div class="content">
         <div data-content id="consulta_automatica" class="active">
             <h2>Consulta automatica</h2>

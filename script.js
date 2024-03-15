@@ -61,3 +61,16 @@ window.onload = function() {
     generarOpciones_anti();
     generarOpciones_grado();
 };
+
+function calculateSalary() {
+    var hourlyRate = document.getElementById('baseSalary').value;
+    var hoursWorked = document.getElementById('hoursWorked').value;
+    var extraHours = document.getElementById('extraHours').value;
+
+    // Las horas extras se pagan al doble
+    var extraHourlyRate = hourlyRate * 2;
+
+    var totalSalary = (hoursWorked * hourlyRate) + (extraHours * extraHourlyRate);
+
+    document.getElementById('salaryResult').textContent = "El salario total es: " + totalSalary;
+}
