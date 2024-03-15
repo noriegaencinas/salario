@@ -87,7 +87,7 @@ function clickBuscar() {
     const t = document.getElementById("resultado")
     t.classList.add('active')
     const te = document.getElementById("texto_resultado")
-    te.textContent = "algo"
+    te.textContent = "Esta ventana estará disponible una vez sea implementada la base de datos, de momento solo funciona la consulta manual"
 }
 
 window.onload = function () {
